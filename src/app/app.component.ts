@@ -9,7 +9,7 @@ import { TodoList } from './todoList';
 })
 export class AppComponent {
   private list = new TodoList("Adam", [
-    new TodoItem("Iść pobiegać", false),
+    new TodoItem("Iść pobiegać", true),
     new TodoItem("Kupić kwiaty"),
     new TodoItem("Odebrać bilet")
   ]);
@@ -18,8 +18,11 @@ export class AppComponent {
     return this.list.user;
   }
 
-
   get itemCount(): number {
     return this.list.items.filter(item => !item.complete).length;
+  }
+
+  get items(): readonly TodoItem[] {
+    return this.list.items;
   }
 }
