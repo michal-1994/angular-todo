@@ -19,16 +19,19 @@ export class AppComponent {
   }
 
   get itemCount(): number {
-    return this.list.items.length;
+    return this.items.length;
   }
 
   get items(): readonly TodoItem[] {
-    return this.list.items.filter(item => !item.complete);
+    return this.list.items.filter(item => this.showComplete || !item.complete);
   }
 
-  addItem(newItem: string) {
-    if (newItem != "") {
-      this.list.addItem(newItem);
+  addItem(input: any) {
+    if (input.value != "") {
+      this.list.addItem(input.value);
+      input.value = "";
     }
   }
+
+  showComplete: boolean = false;
 }

@@ -1,8 +1,15 @@
 <div class="bg-success p-3 text-white text-center">
   <h3>
     Lista {{ username }}a
-    <h6 class="pt-3">Rzeczy pozostałe do zrobienia: {{ itemCount }}</h6>
+    <h6 class="pt-3">Zadania{{showComplete ? "" : " pozostałe do zrobienia"}}: {{ itemCount }}</h6>
   </h3>
+</div>
+
+<div class="bg-success text-white text-center p-2">
+  <div class="form-check">
+    <input id="defaultCheck1" type="checkbox" class="form-check-input" [(ngModel)]="showComplete" />
+    <label for="defaultCheck1" class="form-check-label">Pokaż wykonane zadania</label>
+  </div>
 </div>
 
 <div class="container my-3 container-fluid">
@@ -11,7 +18,7 @@
       <input type="text" class="form-control" placeholder="Wpisz zadanie do wykonania" #todoText>
     </div>
     <div class="col-auto">
-      <button class="btn btn-primary" (click)="addItem(todoText.value)">
+      <button class="btn btn-primary" (click)="addItem(todoText)">
         Dodaj
       </button>
     </div>
@@ -32,10 +39,10 @@
         <td>{{ i + 1 }}</td>
         <td>{{ item.task }}</td>
         <td><input type="checkbox" [(ngModel)]="item.complete"></td>
-        <td [ngSwitch]="item.complete">
+        <!-- <td [ngSwitch]="item.complete">
           <span *ngSwitchCase="true">TAK</span>
           <span *ngSwitchDefault>NIE</span>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
